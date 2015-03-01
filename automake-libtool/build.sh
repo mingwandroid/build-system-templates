@@ -5,7 +5,7 @@
 
 INPATH=${PATH}
 SYSTEMS=('mingw32' 'mingw64' 'msys2')
-VARIANTS=('static' 'shared' 'both')
+VARIANTS=('all-static' 'static' 'shared' 'both')
 # So that comparisons have less differences
 # I install to non-system-specific prefixes
 INSTPREFIX=/install
@@ -29,9 +29,11 @@ for SYSTEM in "${SYSTEMS[@]}"; do
     mkdir "${BUILDDIR}"
     pushd "${BUILDDIR}"
       CONFIG_ARGS=()
-      if [ "${VARIANT}" = "static" ]; then
+      if [ "${VARIANT}" = "all-static" ]; then
         # It *seems* that --enable-static=EXECUTABLE causes static libgcc to be used?!
         CONFIG_ARGS+=('--enable-static=helloworld,libhelloworld' '--disable-shared')
+      elif [ "${VARIANT}" = "static" ]; then
+        CONFIG_ARGS+=('--enable-static' '--disable-shared')
       elif [ "${VARIANT}" = "shared" ]; then
         CONFIG_ARGS+=('--disable-static' '--enable-shared')
       elif [ "${VARIANT}" = "both" ]; then
