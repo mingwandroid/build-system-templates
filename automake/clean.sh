@@ -6,11 +6,9 @@ SOURCE_FILES=('./bootstrap.sh'
               './configure.ac'
               './Makefile.am'
               './clean.sh'
+              './build.sh'
               './COPYING'
-              './src/Makefile.am'
-              './src/main.cpp'
-              './src/helloworld.cpp'
-              './src/helloworld.h')
+              './src/Makefile.am')
 
 SOURCE_DIRS=('.'
              './src')
@@ -38,3 +36,7 @@ for DIR in ${DIRS[@]}; do
   fi
 done
 
+# Copy the shared sources, unfortunate, but the alternatives are either
+# unshared sources for each build system or putting automake stuff into
+# the shared sources folder. Neither of which I want to do.
+cp -rf ../src/* src

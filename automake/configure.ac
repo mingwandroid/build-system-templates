@@ -12,4 +12,3 @@ AC_SUBST(ZLIB_LIBS)
 AC_PROG_CXX
 
 AC_OUTPUT(Makefile src/Makefile)
-
