@@ -9,6 +9,10 @@ VARIANTS=('static' 'shared' 'both')
 # So that comparisons have less differences
 # I install to non-system-specific prefixes
 INSTPREFIX=/install
+VERBOSE="yes"
+if [ "${VERBOSE}" = "yes" ]; then
+  VERBOSITY="--debug-output --trace"
+fi
 
 for SYSTEM in "${SYSTEMS[@]}"; do
 
@@ -30,14 +34,14 @@ for SYSTEM in "${SYSTEMS[@]}"; do
     pushd "${BUILDDIR}"
       CONFIG_ARGS=()
       if [ "${VARIANT}" = "static" ]; then
-        CONFIG_ARGS+=('-DBUILD_SHARED_LIBS=OFF' '-DBUILD_STATIC_LIBS=ON')
+        CONFIG_ARGS+=('-DBUILD_SHARED_LIBS=OFF' '-DBUILD_STATIC_LIBS=ON' '-DBUILD_STATIC_EXES=ON')
       elif [ "${VARIANT}" = "shared" ]; then
-        CONFIG_ARGS+=('-DBUILD_SHARED_LIBS=ON' '-DBUILD_STATIC_LIBS=OFF')
+        CONFIG_ARGS+=('-DBUILD_SHARED_LIBS=ON' '-DBUILD_STATIC_LIBS=OFF' '-DBUILD_STATIC_EXES=OFF')
       elif [ "${VARIANT}" = "both" ]; then
         CONFIG_ARGS+=('-DBUILD_SHARED_LIBS=ON' '-DBUILD_STATIC_LIBS=ON')
       fi
       CONFIG_ARGS+=("-DCMAKE_INSTALL_PREFIX=${INSTPREFIX}")
-      cmake -G'MSYS Makefiles' "${CONFIG_ARGS[@]}" ../ > configure.log 2>&1
+      cmake -G'MSYS Makefiles' "${CONFIG_ARGS[@]}" ${VERBOSITY} ../ > configure.log 2>&1
       make > make.log 2>&1
       make install DESTDIR=${PWD} > make-install.log 2>&1
     popd
