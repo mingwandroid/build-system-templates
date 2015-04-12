@@ -5,7 +5,7 @@ AM_CXXFLAGS = $(HELLOWORLD_CFLAGS)
 # using it to show an example of _la_LIBADD
 lib_LTLIBRARIES = libhelloworld.la
 libhelloworld_la_LIBADD = -lm
-libhelloworld_la_SOURCES = helloworld.cpp helloworld.h
+libhelloworld_la_SOURCES = libhelloworld/helloworld.cpp libhelloworld/helloworld.h
 libhelloworld_la_LDFLAGS = -no-undefined
 
 helloworld_SOURCES = main.cpp

@@ -5,8 +5,8 @@ set -e
 SOURCE_FILES=('./bootstrap.sh'
               './configure.ac'
               './Makefile.am'
-              './clean.sh'
               './build.sh'
+              './clean.sh'
               './COPYING'
               './src/Makefile.am')
 
