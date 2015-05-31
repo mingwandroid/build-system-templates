@@ -6,7 +6,7 @@ AM_CXXFLAGS = $(HELLOWORLD_CFLAGS)
 lib_LTLIBRARIES = libhelloworld.la
 libhelloworld_la_LIBADD = -lm
 libhelloworld_la_SOURCES = libhelloworld/helloworld.cpp libhelloworld/helloworld.h
-libhelloworld_la_LDFLAGS = -no-undefined
+libhelloworld_la_LDFLAGS = -no-undefined $(GETHOSTNAME_LIB) $(LIBSOCKET)
 
 helloworld_SOURCES = main.cpp
 helloworld_LDADD = libhelloworld.la
