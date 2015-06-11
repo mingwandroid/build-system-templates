@@ -1,8 +1,7 @@
-
 #ifndef HELLOWORLD_EXPORT_H
 #define HELLOWORLD_EXPORT_H
 
-#ifdef HELLOWORLD_STATIC_DEFINE
+#ifdef LIBHELLOWORLD_BUILD
 #  define HELLOWORLD_EXPORT
 #  define HELLOWORLD_NO_EXPORT
 #else
@@ -17,7 +16,7 @@
 #  endif
 
 #  ifndef HELLOWORLD_NO_EXPORT
-#    define HELLOWORLD_NO_EXPORT 
+#    define HELLOWORLD_NO_EXPORT
 #  endif
 #endif
 

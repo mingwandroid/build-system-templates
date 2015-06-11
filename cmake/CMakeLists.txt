@@ -44,9 +44,11 @@ foreach(library_type ${LIB_VARIANTS})
   set_target_properties(helloworld_${library_type} PROPERTIES OUTPUT_NAME helloworld)
   # The export header needs to identify a valid target, so even though both static
   # and shared variants should generate the same header file, it must be done once
-  # for each target.
+  # for each target. STATIC_DEFINE LIBHELLOWORLD_BUILD is an attempt to retain compat.
+  # with Autotools (see http://www.hep.by/gnu/libtool/Windows-DLLs.html)
   generate_export_header(helloworld_${library_type}
                          BASE_NAME helloworld
+                         STATIC_DEFINE LIBHELLOWORLD_BUILD
                          EXPORT_FILE_NAME ${TOPLEVEL_SOURCE_DIR}/libhelloworld/helloworld_export.h)
 
   target_include_directories(helloworld_${library_type} PUBLIC
@@ -57,11 +59,11 @@ foreach(library_type ${LIB_VARIANTS})
   #  static library"
   if(library_type STREQUAL "STATIC")
     set_target_properties(helloworld_${library_type} PROPERTIES
-                          COMPILE_FLAGS -DHELLOWORLD_STATIC_DEFINE)
+                          COMPILE_FLAGS -DLIBHELLOWORLD_BUILD)
     # .. and the consumers of the static library need to also define this .. is there
     # no better way than this? It's verbose and brittle.
     set_target_properties(helloworld_${library_type} PROPERTIES
-                          INTERFACE_COMPILE_DEFINITIONS HELLOWORLD_STATIC_DEFINE)
+                          INTERFACE_COMPILE_DEFINITIONS LIBHELLOWORLD_BUILD)
   endif()
 endforeach(library_type)
 

@@ -132,7 +132,7 @@ am__uninstall_files_from_dir = { \
 am__installdirs = "$(DESTDIR)$(libdir)" "$(DESTDIR)$(bindir)"
 LTLIBRARIES = $(lib_LTLIBRARIES)
 libhelloworld_la_DEPENDENCIES =
-am_libhelloworld_la_OBJECTS = helloworld.lo
+am_libhelloworld_la_OBJECTS = libhelloworld_la-helloworld.lo
 libhelloworld_la_OBJECTS = $(am_libhelloworld_la_OBJECTS)
 AM_V_lt = $(am__v_lt_@AM_V@)
 am__v_lt_ = $(am__v_lt_@AM_DEFAULT_V@)
@@ -357,6 +357,7 @@ AM_CXXFLAGS = $(HELLOWORLD_CFLAGS)
 # libm is a dummy library on mingw-w64, so
 # using it to show an example of _la_LIBADD
 lib_LTLIBRARIES = libhelloworld.la
+libhelloworld_la_CPPFLAGS = -DLIBHELLOWORLD_BUILD
 libhelloworld_la_LIBADD = -lm
 libhelloworld_la_SOURCES = libhelloworld/helloworld.cpp libhelloworld/helloworld.h
 libhelloworld_la_LDFLAGS = -no-undefined
@@ -493,7 +494,7 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/helloworld.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libhelloworld_la-helloworld.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/main.Po@am__quote@
 
 .cpp.o:
@@ -517,12 +518,12 @@ distclean-compile:
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LTCXXCOMPILE) -c -o $@ $<
 
-helloworld.lo: libhelloworld/helloworld.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT helloworld.lo -MD -MP -MF $(DEPDIR)/helloworld.Tpo -c -o helloworld.lo `test -f 'libhelloworld/helloworld.cpp' || echo '$(srcdir)/'`libhelloworld/helloworld.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/helloworld.Tpo $(DEPDIR)/helloworld.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='libhelloworld/helloworld.cpp' object='helloworld.lo' libtool=yes @AMDEPBACKSLASH@
+libhelloworld_la-helloworld.lo: libhelloworld/helloworld.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libhelloworld_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libhelloworld_la-helloworld.lo -MD -MP -MF $(DEPDIR)/libhelloworld_la-helloworld.Tpo -c -o libhelloworld_la-helloworld.lo `test -f 'libhelloworld/helloworld.cpp' || echo '$(srcdir)/'`libhelloworld/helloworld.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libhelloworld_la-helloworld.Tpo $(DEPDIR)/libhelloworld_la-helloworld.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='libhelloworld/helloworld.cpp' object='libhelloworld_la-helloworld.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o helloworld.lo `test -f 'libhelloworld/helloworld.cpp' || echo '$(srcdir)/'`libhelloworld/helloworld.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libhelloworld_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libhelloworld_la-helloworld.lo `test -f 'libhelloworld/helloworld.cpp' || echo '$(srcdir)/'`libhelloworld/helloworld.cpp
 
 mostlyclean-libtool:
 	-rm -f *.lo

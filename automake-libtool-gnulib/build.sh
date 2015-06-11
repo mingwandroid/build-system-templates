@@ -34,10 +34,10 @@ for SYSTEM in "${SYSTEMS[@]}"; do
       MAKE_ARGS=()
       if [ "${VARIANT}" = "all-static" ]; then
         # It *seems* that --enable-static=EXECUTABLE causes static libgcc to be used?!
-        # AM_LDFLAGS should be set to: -Wc,--static -Wc,-static-libgcc -Wc,-static-libstdcxx
+        # AM_LDFLAGS should be set to: -Wc,--static -Wc,-static-libgcc -Wc,-static-libstdc++
         # .. but not for configure since that doesn't use libtool (-Wc,.. is libtool specific)
         CONFIG_ARGS+=('--enable-static=helloworld,libhelloworld' '--disable-shared' 'LDFLAGS=-static -static-libgcc')
-        MAKE_ARGS+=('LDFLAGS=-all-static -Wc,-static-libgcc -Wc,-static-libstdcxx')
+        MAKE_ARGS+=('LDFLAGS=-all-static -Wc,-static-libgcc -Wc,-static-libstdc++')
       elif [ "${VARIANT}" = "static" ]; then
         CONFIG_ARGS+=('--enable-static' '--disable-shared')
       elif [ "${VARIANT}" = "shared" ]; then
