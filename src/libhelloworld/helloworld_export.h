@@ -1,3 +1,4 @@
+
 #ifndef HELLOWORLD_EXPORT_H
 #define HELLOWORLD_EXPORT_H
 
@@ -16,7 +17,7 @@
 #  endif
 
 #  ifndef HELLOWORLD_NO_EXPORT
-#    define HELLOWORLD_NO_EXPORT
+#    define HELLOWORLD_NO_EXPORT 
 #  endif
 #endif
 
